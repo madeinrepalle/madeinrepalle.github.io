@@ -2,6 +2,7 @@
 
 ![Status](https://img.shields.io/website?url=https%3A%2F%2Fmadeinrepalle.github.io&label=Website&style=for-the-badge&logo=github)
 ![Brand](https://img.shields.io/badge/Brand-Made_In_Repalle-2d5a27?style=for-the-badge&logo=leaf)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/madeinrepalle)
 
 ### *Farm-fresh seasonal fruits. Taste of the Indian soil and sunshine.*
 
@@ -15,9 +16,11 @@ Our goal is simple:
 
 ---
 
-## 🔗 Visit Our Website
-Click the link below to see our farm and fruits:
-### [👉 https://madeinrepalle.github.io](https://madeinrepalle.github.io)
+## 🔗 Connect With Us
+Visit our website to see the farm, or follow us on LinkedIn for updates:
+
+### [👉 Visit Website: madeinrepalle.github.io](https://madeinrepalle.github.io)
+### [👉 Follow us on LinkedIn](https://www.linkedin.com/company/madeinrepalle)
 
 ---
 
