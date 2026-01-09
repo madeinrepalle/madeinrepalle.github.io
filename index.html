@@ -21,71 +21,46 @@
 
         /* --- FANCY MOUSE GLOW --- */
         #cursor-glow {
-            position: fixed; width: 400px; height: 400px;
+            position: fixed; width: 450px; height: 450px; /* Increased size */
             background: radial-gradient(circle, rgba(255, 183, 3, 0.15) 0%, rgba(255, 183, 3, 0) 70%);
             transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: overlay; transition: transform 0.1s ease;
         }
         #cursor-dot {
-            position: fixed; width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
-            transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 10px var(--accent);
+            position: fixed; width: 15px; height: 15px; /* Increased size */
+            background: var(--accent); border-radius: 50%;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 15px var(--accent);
         }
 
-        /* --- FALLING LEAVES & PARTICLES --- */
+        /* --- SIDE-WIND LEAVES & PARTICLES --- */
         #effects-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 999; overflow: hidden;
         }
         
         .leaf {
-            position: absolute; top: -50px;
+            position: absolute; left: -50px; /* Start off-screen left */
             font-size: 1.2rem; color: var(--secondary); opacity: 0.8;
-            animation: fall linear infinite;
+            will-change: transform;
         }
         
         .particle {
             position: absolute; background: var(--accent); border-radius: 50%;
-            opacity: 0.6; animation: floatParticle linear infinite;
+            opacity: 0.7; animation: floatParticle linear infinite;
         }
 
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(100px); opacity: 0; }
+        /* New Animation: Float from Left to Right with gentle drop */
+        @keyframes floatAcross {
+            0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(110vw) translateY(20vh) rotate(360deg); opacity: 0; }
         }
 
         @keyframes floatParticle {
             0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.8; }
+            50% { opacity: 0.9; }
             100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
         }
-
-        /* --- FLYING BIRD ANIMATION --- */
-        .bird-container {
-            position: absolute; top: 15%; left: -10%;
-            transform: scale(0.5); z-index: 2;
-            animation: fly-across 25s linear infinite;
-        }
-        .bird-body {
-            width: 30px; height: 30px; background: black; border-radius: 50% 50% 0 0;
-            position: relative; clip-path: polygon(0 40%, 100% 40%, 50% 100%);
-            animation: flap 0.5s infinite alternate;
-        }
-        .bird-wing {
-             /* Simple CSS bird shape */
-             border-bottom: 10px solid black;
-             border-left: 15px solid transparent;
-             border-right: 15px solid transparent;
-             height: 0; width: 50px;
-             position: absolute; top: -10px; left: -10px;
-             animation: wing-flap 0.4s infinite alternate;
-        }
-
-        @keyframes fly-across {
-            0% { left: -10%; top: 20%; }
-            25% { top: 15%; }
-            50% { top: 25%; }
-            100% { left: 110%; top: 10%; }
-        }
-        @keyframes wing-flap { from { transform: rotateX(0deg); } to { transform: rotateX(60deg); } }
 
         /* HEADER */
         header {
@@ -181,12 +156,7 @@
 </head>
 <body>
 
-    <div id="effects-container">
-        <div class="bird-container">
-            <div class="bird-wing"></div>
-            <i class="fas fa-dove" style="font-size: 2rem; color: rgba(255,255,255,0.7); transform: rotateY(180deg);"></i>
-        </div>
-    </div>
+    <div id="effects-container"></div>
 
     <div id="cursor-glow"></div>
     <div id="cursor-dot"></div>
@@ -344,17 +314,19 @@
     </footer>
 
     <script>
-        // --- 1. RANDOM FALLING LEAVES & PARTICLES ---
+        // --- 1. SIDE-WIND LEAVES & PARTICLES ---
         function createLeaf() {
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
-            leaf.innerText = Math.random() > 0.5 ? '🍃' : '🍂'; // Random leaf type
-            leaf.style.left = Math.random() * 100 + 'vw';
-            leaf.style.animationDuration = Math.random() * 5 + 8 + 's'; // 8-13s fall time
+            leaf.innerText = Math.random() > 0.5 ? '🍃' : '🍂'; 
+            leaf.style.top = Math.random() * 80 + 'vh'; // Random start height
+            // Animation duration 10-18s (slower wind)
+            leaf.style.animation = `floatAcross ${Math.random() * 8 + 10}s linear forwards`;
             leaf.style.fontSize = Math.random() * 1 + 0.5 + 'rem';
+            
             document.getElementById('effects-container').appendChild(leaf);
             
-            setTimeout(() => { leaf.remove(); }, 13000); // Cleanup
+            setTimeout(() => { leaf.remove(); }, 18000); 
         }
 
         function createParticle() {
@@ -370,9 +342,9 @@
             setTimeout(() => { p.remove(); }, 10000);
         }
 
-        // Spawn items periodically
-        setInterval(createLeaf, 2000); // Leaf every 2s
-        setInterval(createParticle, 500); // Particle every 0.5s
+        // Spawn leaves more occasionally, particles frequently
+        setInterval(createLeaf, 3000); // Leaf every 3s
+        setInterval(createParticle, 150); // Particle every 150ms (More pollen!)
 
         // --- 2. MOUSE GLOW ---
         const glow = document.getElementById('cursor-glow');
