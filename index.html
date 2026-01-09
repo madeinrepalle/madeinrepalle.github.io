@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Made In Repalle | Farm Fresh Operations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5a27; 
+            --accent: #f1c40f; 
+            --dark: #121212;
+            --light: #f8f9fa;
+            --text-gray: #555;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--light); color: var(--dark); line-height: 1.7; }
+
+        /* HEADER */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--accent); }
+
+        .nav-links a { text-decoration: none; color: var(--dark); margin-left: 2rem; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-linkedin { background: #0077b5; color: white !important; padding: 8px 20px; border-radius: 4px; }
+
+        /* HERO */
+        .hero {
+            height: 80vh;
+            /* Update this image path */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('images/hero-farm.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 300; }
+        
+        .cta-btn {
+            padding: 15px 40px;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(241, 196, 15, 0.3); }
+
+        /* MISSION SECTION (LinkedIn Copy) */
+        .mission-section { padding: 5rem 10%; background: white; text-align: center; }
+        .mission-header { font-size: 2.5rem; color: var(--primary); margin-bottom: 2rem; }
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; margin-top: 3rem; text-align: left; }
+        
+        .mission-card { padding: 2rem; background: var(--light); border-radius: 12px; border-left: 5px solid var(--accent); }
+        .mission-card h3 { color: var(--dark); margin-bottom: 1rem; font-size: 1.2rem; }
+
+        /* PRODUCT HIGHLIGHT */
+        .product-section { padding: 5rem 5%; background: #f1f3f5; }
+        .product-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 4rem; 
+            align-items: center; 
+            background: white; 
+            padding: 3rem; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+        }
+        
+        .product-img { flex: 1; min-width: 300px; }
+        .product-img img { width: 100%; border-radius: 15px; }
+        
+        .product-details { flex: 1; min-width: 300px; }
+        .scientific-name { font-style: italic; color: #888; font-size: 0.9rem; margin-bottom: 0.5rem; display: block;}
+
+        /* CV / OPERATIONS SECTION */
+        .ops-panel {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            padding: 4rem 5%;
+            margin-top: 0;
+            border-top: 3px solid var(--accent);
+        }
+
+        .ops-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .ops-card { background: #252525; padding: 1.5rem; border-radius: 8px; border: 1px solid #333; }
+        .ops-card i { color: var(--accent); margin-bottom: 1rem; font-size: 1.5rem; }
+        .status-badge { background: #27ae60; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; vertical-align: middle; margin-left: 10px; }
+
+        footer { background: #111; color: #666; text-align: center; padding: 2rem; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .product-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Made In <span>Repalle</span></div>
+        <nav class="nav-links">
+            <a href="#mission">Our Mission</a>
+            <a href="#product">Regi Pallu</a>
+            <a href="#operations">Operations</a>
+            <a href="https://www.linkedin.com/company/madeinrepalle" target="_blank" class="btn-linkedin"><i class="fab fa-linkedin"></i> Connect</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Taste the Indian Soil & Sunshine</h1>
+        <p>Farm-fresh seasonal fruits delivered directly from Repalle to your table.</p>
+        <a href="#product" class="cta-btn">View The Harvest</a>
+    </section>
+
+    <section id="mission" class="mission-section">
+        <h2 class="mission-header">What Makes Us Special?</h2>
+        <p style="max-width: 600px; margin: 0 auto; color: var(--text-gray);">
+            Our mission is to deliver farm-fresh, seasonal fruits directly from Repalle, India. We harvest at peak flavor to ensure you experience the true taste of home.
+        </p>
+
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3><i class="fas fa-certificate" style="color:var(--primary)"></i> "Made in Repalle" Brand</h3>
+                <p>We're committed to supporting local farmers and showcasing the unique quality of Repalle's fruits to the world.</p>
+            </div>
+            <div class="mission-card">
+                <h3><i class="fas fa-sun" style="color:var(--accent)"></i> Farm-Fresh Flavor</h3>
+                <p>We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳</p>
+            </div>
+            <div class="mission-card">
+                <h3><i class="fas fa-calendar-alt" style="color:var(--primary)"></i> Seasonal Offerings</h3>
+                <p>Get ready for a delightful variety of fruits throughout the year! From Regi Pallu to future harvests.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="product" class="product-section">
+        <div class="product-container">
+            <div class="product-img">
+                <img src="images/fruit-closeup.jpg" alt="Bala Sundari Regi Pallu">
+            </div>
+            <div class="product-details">
+                <span class="scientific-name">Ziziphus mauritiana (Hybrid Variety)</span>
+                <h2 style="font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem;">Bala Sundari <br><span style="color:var(--accent)">Regi Pallu</span></h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-gray);">
+                    A perfect hybrid. The size and crunch of an apple meeting the nostalgic tang of the traditional Regi Pandu (Jujube). 
+                </p>
+                
+                <div style="background: #fff; border-left: 4px solid var(--primary); padding: 1rem; margin-bottom: 2rem;">
+                    <strong>Current Status:</strong> We have successfully launched and gained a great reputation for our Regi pallu in the region.
+                </div>
+
+                <a href="https://www.linkedin.com/company/madeinrepalle" class="cta-btn" style="font-size: 0.8rem;">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="operations" class="ops-panel">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 2rem; border-bottom:1px solid #333; padding-bottom:1rem;">
+            <div>
+                <h3 style="color: var(--accent); letter-spacing: 2px; margin-bottom:0.5rem;">DIGITAL OPERATIONS COMMAND</h3>
+                <p style="font-size: 0.8rem; color: #888; font-family: monospace;">// REMOTE INFRASTRUCTURE MANAGEMENT</p>
+            </div>
+            <div style="text-align: right; display:none; md-display:block;">
+                <p style="font-family: monospace; font-size: 0.9rem;">SYS.STATUS: <span style="color:#27ae60">ONLINE</span></p>
+            </div>
+        </div>
+
+        <div class="ops-grid">
+            <div class="ops-card">
+                <i class="fas fa-network-wired"></i>
+                <h4>Supply Chain Visibility</h4>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 0.5rem;">
+                    Managing digital endpoints for "Made In Repalle." Orchestrating farm-to-table logistics visibility and branding from a centralized remote hub.
+                </p>
+            </div>
+            <div class="ops-card">
+                <i class="fas fa-handshake"></i>
+                <h4>B2B Partnership Logistics</h4>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 0.5rem;">
+                    Actively building digital gateways for distributors and retailers in the food logistics industry.
+                </p>
+            </div>
+            <div class="ops-card">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Remote Brand Ops</h4>
+                <p style="font-size: 0.85rem; color: #aaa; margin-top: 0.5rem;">
+                    Full-stack management of web assets, marketing funnels, and customer engagement channels.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Made In Repalle. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #444;">Managed by Hara Madhav Talasila | Digital Operations Lead</p>
+    </footer>
+
+</body>
+</html>
