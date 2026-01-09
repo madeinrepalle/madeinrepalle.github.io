@@ -7,74 +7,137 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #2d5a27; 
-            --accent: #f1c40f; 
-            --dark: #222;
-            --light: #f9f9f9;
+            /* COLOR PALETTE */
+            --primary: #1b4332; /* Deep Hunter Green */
+            --secondary: #40916c; /* Medium Leaf Green */
+            --accent: #ffb703;  /* Vibrant Harvest Gold */
+            --dark: #081c15;    /* Very Dark Green/Black */
+            --light: #f4f6f0;   /* Soft Earthy White */
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--light); color: var(--dark); line-height: 1.7; }
 
         /* HEADER */
         header {
-            background: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
+            background: white; padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
         }
-        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--dark); margin-left: 2rem; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-        .btn-linkedin { background: #0077b5; color: white !important; padding: 8px 18px; border-radius: 4px; font-size: 0.9rem; }
+        
+        /* LOGO */
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+        }
+        .logo span { 
+            color: var(--primary); 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+        }
 
+        .nav-links { display: flex; align-items: center; }
+        
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--secondary); 
+            margin-left: 2rem; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            transition: 0.3s; 
+        }
+        .nav-links a:hover { color: var(--accent); }
+        
         /* HERO */
         .hero {
             height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('hero-farm.png');
+            /* UPDATED: hero-farm.png and no 'images/' folder */
+            background: linear-gradient(rgba(8, 28, 21, 0.6), rgba(8, 28, 21, 0.4)), url('hero-farm.png');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 400; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 400; color: #e9ecef; }
         
         .cta-btn { 
-            padding: 12px 35px; 
+            padding: 14px 40px; 
             background: var(--accent); 
             color: var(--dark); 
             text-decoration: none; 
-            font-weight: 700; 
+            font-weight: 800; 
             border-radius: 50px; 
             transition: 0.3s; 
             text-transform: uppercase; 
-            font-size: 0.9rem; 
+            font-size: 0.95rem; 
+            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.4);
         }
-        .cta-btn:hover { background: #d4ac0d; transform: translateY(-2px); }
+        .cta-btn:hover { background: #ffca3a; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 183, 3, 0.6); }
 
         /* SECTIONS */
-        .section { padding: 4rem 5%; }
+        .section { padding: 5rem 5%; }
         .center-text { text-align: center; max-width: 800px; margin: 0 auto; }
-        .section-title { font-size: 2.2rem; color: var(--primary); margin-bottom: 1rem; }
+        .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 800; }
 
         /* MISSION GRID */
-        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .mission-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-        .mission-card i { font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+        .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .mission-card { background: white; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border-bottom: 4px solid transparent; }
+        .mission-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--accent); }
+        .mission-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
 
         /* PRODUCT */
-        .product-container { display: flex; flex-wrap: wrap; gap: 3rem; align-items: center; background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .product-container { display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; background: white; padding: 4rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .product-img { flex: 1; min-width: 300px; }
-        .product-img img { width: 100%; border-radius: 10px; }
+        .product-img img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .product-details { flex: 1; min-width: 300px; }
 
         /* MAP */
-        .map-container { width: 100%; height: 400px; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-top: 2rem; }
+        .map-container { width: 100%; height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 3rem; }
 
-        /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .team-card { background: white; padding: 2rem; border-radius: 8px; border-left: 5px solid var(--primary); }
+        /* FOUNDER SECTION */
+        .founder-container {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; margin-top: 3rem;
+            background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border-left: 8px solid var(--primary);
+        }
+        .founder-img { flex: 1; min-width: 300px; }
+        .founder-img img { width: 100%; border-radius: 15px; object-fit: cover; max-height: 450px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .founder-text { flex: 1.5; min-width: 300px; }
 
-        footer { background: #222; color: #888; text-align: center; padding: 3rem 1rem; font-size: 0.9rem; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .nav-links a { margin-left: 1rem; font-size: 0.8rem; } }
+        /* FOOTER */
+        footer { background: #0b231a; color: #a5a5a5; text-align: center; padding: 4rem 1rem; font-size: 0.9rem; }
+        .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        
+        .footer-btn-linkedin { 
+            background: #0077b5; 
+            color: white !important; 
+            padding: 6px 15px; 
+            border-radius: 4px; 
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .footer-btn-linkedin:hover { background: #005e93; }
+
+        .tiny-footer-text { font-size: 0.8rem; color: #666; margin-top: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
+
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 2.2rem; } 
+            .nav-links a { margin-left: 1rem; font-size: 0.8rem; } 
+            .founder-container { flex-direction: column; padding: 1.5rem; }
+            .product-container { padding: 2rem; }
+            .tiny-footer-text { flex-direction: column; gap: 10px; }
+            .logo { font-size: 1.5rem; }
+            .logo span { font-size: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -83,9 +146,8 @@
         <div class="logo">Made In <span>Repalle</span></div>
         <nav class="nav-links">
             <a href="#product">The Fruit</a>
-            <a href="#location">Location</a>
+            <a href="#founder">The Raithu</a>
             <a href="#contact">Contact</a>
-            <a href="https://www.linkedin.com/company/madeinrepalle" target="_blank" class="btn-linkedin"><i class="fab fa-linkedin"></i> Connect</a>
         </nav>
     </header>
 
@@ -116,17 +178,22 @@
                 <h3>Local Pride</h3>
                 <p>We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.</p>
             </div>
+            <div class="mission-card">
+                <i class="fas fa-globe-asia"></i>
+                <h3>Modern Tradition</h3>
+                <p>Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.</p>
+            </div>
         </div>
     </section>
 
-    <section id="product" class="section" style="background: #f4f4f4;">
+    <section id="product" class="section" style="background: white;">
         <div class="product-container">
             <div class="product-img">
                 <img src="fruit-closeup.jpg" alt="Bala Sundari Regi Pallu">
             </div>
             <div class="product-details">
-                <span style="color: #888; font-style: italic;">Ziziphus mauritiana (Hybrid)</span>
-                <h2 class="section-title" style="margin-top: 0.5rem;">Bala Sundari <br><span style="color:var(--accent)">Regi Pallu</span></h2>
+                <span style="color: var(--secondary); font-weight: 600; font-style: italic; letter-spacing: 1px;">Ziziphus mauritiana (Hybrid)</span>
+                <h2 class="section-title" style="margin-top: 0.5rem; color: var(--primary);">Bala Sundari <br><span style="color:var(--accent)">Regi Pallu</span></h2>
                 <p>
                     We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube.
                     It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.
@@ -139,7 +206,7 @@
         </div>
     </section>
 
-    <section id="location" class="section">
+    <section id="location" class="section" style="background: var(--light);">
         <div class="center-text">
             <h2 class="section-title">Visit The Farm</h2>
             <p>Located in the heart of the Repalle delta, Andhra Pradesh.</p>
@@ -158,54 +225,58 @@
         </div>
     </section>
 
-    <section id="team" class="section" style="background: white;">
+    <section id="founder" class="section" style="background: #e9f5db;">
         <div class="center-text">
-            <h2 class="section-title">Our Team & Legacy</h2>
+            <h2 class="section-title">Our Legacy & The Raithu</h2>
             <p>A family initiative bridging traditional farming with modern supply chains.</p>
-            <p style="margin-top: 15px; color: var(--primary); font-weight: 600; font-size: 1.1rem;">
-                Proudly representing the agricultural families of <span style="color:var(--accent)">Yalavarthi</span> and <span style="color:var(--accent)">Talasila</span>.
+            <p style="margin-top: 15px; color: var(--primary); font-weight: 700; font-size: 1.2rem; background: rgba(255,255,255,0.6); display:inline-block; padding: 5px 15px; border-radius: 50px;">
+                Proudly representing the agricultural families of <span style="color:#d00000">Yalavarthi</span> and <span style="color:#d00000">Talasila</span>.
             </p>
         </div>
 
-        <div class="team-grid">
-            <div class="team-card">
-                <h3 style="color: var(--primary);">Suresh Babu Talasila</h3>
-                <p style="font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">Founder & Proprietor</p>
-                <p style="font-size: 0.9rem; color: #666;">
-                    Leading the agricultural strategy and on-site farm operations. Dedicated to cultivating the highest quality soil and harvest.
-                </p>
+        <div class="founder-container">
+            <div class="founder-img">
+                <img src="raithu-suresh.jpg" alt="Suresh Babu Talasila in the field">
             </div>
-
-            <div class="team-card">
-                <h3 style="color: var(--primary);">Dr. Hara Madhav Talasila</h3>
-                <p style="font-weight: bold; color: var(--accent); margin-bottom: 0.5rem;">Digital Operations Lead</p>
-                <p style="font-size: 0.9rem; color: #666;">
-                    Managing digital infrastructure, brand strategy, and connecting the farm to global markets remotely.
+            <div class="founder-text">
+                <h3 style="color: var(--primary); font-size: 2.2rem; font-weight: 800;">Suresh Babu Talasila</h3>
+                <p style="font-weight: bold; color: var(--accent); margin-bottom: 1.5rem; font-size: 1.2rem; letter-spacing: 1px;">FOUNDER & PROPRIETOR</p>
+                <p style="font-size: 1.05rem; color: #444;">
+                    Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy. 
+                </p>
+                <br>
+                <p style="font-size: 1.05rem; color: #444;">
+                    He leads all agricultural strategy and on-site operations, ensuring every harvest meets the highest standards of quality before it reaches your table.
                 </p>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section" style="background: #e8f5e9; text-align: center;">
+    <section id="contact" class="section" style="text-align: center; background: white;">
         <div class="center-text">
             <h2 class="section-title">Bulk Orders & Inquiries</h2>
             <p>We specialize in bulk orders. Please fill out your details, and we will call you to discuss pricing and delivery.</p>
             <br>
-            <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 1.1rem; padding: 15px 40px;">
+            <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 1.1rem; padding: 18px 50px;">
                 <i class="fas fa-paper-plane"></i> Open Order Form
             </a>
         </div>
     </section>
 
     <footer>
-        <p style="font-size: 1.1rem; color: white; margin-bottom: 1rem;">Made In Repalle</p>
-        <p>© 2026 All Rights Reserved.</p>
-        <br>
-        <p>
-            <a href="https://www.linkedin.com/company/madeinrepalle" style="color: #888; text-decoration: none;">
-                <i class="fab fa-linkedin"></i> Follow us on LinkedIn
-            </a>
-        </p>
+        <div class="footer-content">
+            <p style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Made In Repalle</p>
+            <p>© 2026 All Rights Reserved.</p>
+            
+            <div style="width: 50px; height: 2px; background: var(--accent); margin: 1rem 0;"></div>
+
+            <div class="tiny-footer-text">
+                <span>Digital Infrastructure managed by Dr. Hara Madhav Talasila.</span>
+                <a href="https://www.linkedin.com/company/madeinrepalle" target="_blank" class="footer-btn-linkedin">
+                    <i class="fab fa-linkedin"></i> Connect
+                </a>
+            </div>
+        </div>
     </footer>
 
 </body>
