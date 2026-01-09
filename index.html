@@ -7,167 +7,98 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            /* COLOR PALETTE */
-            --primary: #1b4332; /* Deep Hunter Green */
-            --secondary: #40916c; /* Medium Leaf Green */
-            --accent: #ffb703;  /* Vibrant Harvest Gold */
-            --dark: #081c15;    /* Very Dark Green/Black */
-            --light: #f4f6f0;   /* Soft Earthy White */
+            --primary: #1b4332; 
+            --secondary: #40916c; 
+            --accent: #ffb703;  
+            --dark: #081c15;    
+            --light: #f4f6f0;   
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: none; /* Hide default cursor for custom one */ }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: none; }
         
-        /* Show default cursor on links/buttons so people know they are clickable */
         a, button, .cta-btn { cursor: pointer; }
 
-        body { 
-            background-color: var(--light); 
-            color: var(--dark); 
-            line-height: 1.7; 
-            overflow-x: hidden;
-        }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.7; overflow-x: hidden; }
 
-        /* --- FANCY MOUSE GLOW EFFECT --- */
+        /* FANCY MOUSE GLOW */
         #cursor-glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
+            position: fixed; width: 400px; height: 400px;
             background: radial-gradient(circle, rgba(255, 183, 3, 0.15) 0%, rgba(255, 183, 3, 0) 70%);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: overlay; /* This makes it blend nicely with greens */
-            transition: transform 0.1s ease;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 9999; mix-blend-mode: overlay; transition: transform 0.1s ease;
         }
-        
         #cursor-dot {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 10000;
-            box-shadow: 0 0 10px var(--accent);
+            position: fixed; width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+            transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 10px var(--accent);
         }
 
         /* HEADER */
         header {
-            background: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 5%; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
         }
-        
-        .logo { 
-            font-size: 1.8rem; font-weight: 800; color: var(--accent); 
-            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;
-        }
-        .logo span { 
-            color: var(--primary); font-size: 1.8rem; font-weight: 900; 
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
-        }
-
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+        .logo span { color: var(--primary); font-size: 1.8rem; font-weight: 900; text-shadow: 2px 2px 0px rgba(0,0,0,0.05); }
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { 
-            text-decoration: none; color: var(--secondary); margin-left: 2rem; 
-            font-weight: 700; font-size: 1rem; transition: 0.3s; 
-        }
+        .nav-links a { text-decoration: none; color: var(--secondary); margin-left: 2rem; font-weight: 700; font-size: 1rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
         
-        /* HERO with DYNAMIC ELEMENTS */
+        /* HERO */
         .hero {
-            height: 85vh;
-            position: relative;
-            background: linear-gradient(rgba(8, 28, 21, 0.7), rgba(8, 28, 21, 0.5)), url('hero-farm.png');
-            background-size: cover; background-position: center; background-attachment: fixed; /* Parallax effect */
+            height: 80vh; position: relative;
+            background: linear-gradient(rgba(8, 28, 21, 0.6), rgba(8, 28, 21, 0.4)), url('hero-farm.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
             display: flex; flex-direction: column; justify-content: center; align-items: center; 
             text-align: center; color: white; padding: 0 20px; overflow: hidden;
         }
-
-        /* Sun Rays Animation */
         .sun-rays {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-conic-gradient(
-                from 0deg,
-                rgba(255, 255, 255, 0.03) 0deg 10deg,
-                transparent 10deg 20deg
-            );
-            animation: rotate 60s linear infinite;
-            pointer-events: none;
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, 0.03) 0deg 10deg, transparent 10deg 20deg);
+            animation: rotate 60s linear infinite; pointer-events: none;
         }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 2; }
         .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 400; color: #e9ecef; position: relative; z-index: 2; }
-        
-        /* LIVE FARM STATUS WIDGET */
-        .farm-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            padding: 8px 20px;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .status-dot {
-            height: 8px; width: 8px; background-color: #25D366; border-radius: 50%; display: inline-block;
-            box-shadow: 0 0 8px #25D366; animation: blink 2s infinite;
-        }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-
         .cta-btn { 
-            position: relative; z-index: 2;
-            padding: 16px 45px; background: var(--accent); color: var(--dark); text-decoration: none; 
-            font-weight: 800; border-radius: 50px; transition: 0.3s; text-transform: uppercase; 
-            font-size: 0.95rem; box-shadow: 0 5px 15px rgba(255, 183, 3, 0.4);
+            position: relative; z-index: 2; padding: 16px 45px; background: var(--accent); color: var(--dark); 
+            text-decoration: none; font-weight: 800; border-radius: 50px; transition: 0.3s; 
+            text-transform: uppercase; font-size: 0.95rem; box-shadow: 0 5px 15px rgba(255, 183, 3, 0.4);
         }
         .cta-btn:hover { background: #ffca3a; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 183, 3, 0.6); }
+
+        /* LIVE WEATHER STRIP */
+        #weather-ticker {
+            background: var(--primary); color: white; padding: 15px 5%;
+            display: flex; justify-content: center; align-items: center; gap: 40px;
+            font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: relative; z-index: 10; flex-wrap: wrap;
+        }
+        .weather-item { display: flex; align-items: center; gap: 8px; }
+        .weather-item i { color: var(--accent); font-size: 1.1rem; }
+        .blink-dot {
+            height: 8px; width: 8px; background-color: #25D366; border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 8px #25D366; animation: blink 2s infinite; margin-right: 5px;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+        
+        /* Class to hide elements if weather fetch fails */
+        .weather-hidden { display: none !important; }
 
         /* SECTIONS */
         .section { padding: 5rem 5%; }
         .center-text { text-align: center; max-width: 800px; margin: 0 auto; }
         .section-title { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; font-weight: 800; }
-
-        /* MISSION GRID */
         .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .mission-card { background: white; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border-bottom: 4px solid transparent; }
         .mission-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--accent); }
         .mission-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
-
-        /* PRODUCT */
+        
         .product-container { display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; background: white; padding: 4rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .product-img { flex: 1; min-width: 300px; }
         .product-img img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .product-details { flex: 1; min-width: 300px; }
-
-        /* MAP */
+        
         .map-container { width: 100%; height: 450px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 3rem; }
-
-        /* FOUNDER SECTION */
+        
         .founder-container {
             display: flex; flex-wrap: wrap; align-items: center; gap: 3rem; margin-top: 3rem;
             background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.06);
@@ -177,10 +108,8 @@
         .founder-img img { width: 100%; border-radius: 15px; object-fit: cover; max-height: 450px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .founder-text { flex: 1.5; min-width: 300px; }
 
-        /* FOOTER */
         footer { background: #0b231a; color: #a5a5a5; text-align: center; padding: 4rem 1rem; font-size: 0.9rem; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-        
         .footer-btn-linkedin { 
             background: #0077b5; color: white !important; padding: 6px 15px; border-radius: 4px; 
             font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; 
@@ -190,14 +119,17 @@
         .tiny-footer-text { font-size: 0.8rem; color: #666; margin-top: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
 
         @media (max-width: 768px) { 
-            .hero h1 { font-size: 2.2rem; } 
-            .nav-links a { margin-left: 1rem; font-size: 0.8rem; } 
+            header { flex-direction: column; gap: 10px; padding: 1rem; }
+            .logo { font-size: 1rem; } .logo span { font-size: 1.4rem; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { margin-left: 0; margin: 0 8px; font-size: 0.85rem; }
+            .hero h1 { font-size: 2rem; } .hero p { font-size: 1rem; }
             .founder-container { flex-direction: column; padding: 1.5rem; }
             .product-container { padding: 2rem; }
             .tiny-footer-text { flex-direction: column; gap: 10px; }
-            .logo { font-size: 1.5rem; } .logo span { font-size: 1.5rem; }
-            #cursor-glow, #cursor-dot { display: none; /* Disable custom cursor on mobile */ }
+            #cursor-glow, #cursor-dot { display: none; }
             body { cursor: auto; }
+            #weather-ticker { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
         }
     </style>
 </head>
@@ -216,18 +148,36 @@
     </header>
 
     <section class="hero">
-        <div class="sun-rays"></div> <div class="farm-status">
-            <div class="status-dot"></div>
-            <span>LIVE at Farm:</span>
-            <span id="farm-time" style="color: white; margin-left: 5px;">Loading...</span>
-            <span style="color: rgba(255,255,255,0.4); margin: 0 10px;">|</span>
-            <span style="font-family: monospace; font-size: 0.8rem; color: #ccc;">15°59'N 80°47'E</span>
-        </div>
-
+        <div class="sun-rays"></div>
         <h1>Taste the Indian Soil & Sunshine</h1>
         <p>Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.</p>
         <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn">Contact for Bulk Orders</a>
     </section>
+
+    <div id="weather-ticker">
+        <div class="weather-item">
+            <div class="blink-dot"></div>
+            <span>LIVE at Farm</span>
+        </div>
+        
+        <div class="weather-item">
+            <i class="far fa-clock"></i>
+            <span id="farm-time">Loading...</span>
+        </div>
+
+        <div class="weather-item weather-info">
+            <i class="fas fa-temperature-high"></i>
+            <span id="farm-temp">--°C</span>
+        </div>
+        <div class="weather-item weather-info">
+            <i class="fas fa-wind"></i>
+            <span id="farm-wind">-- km/h</span>
+        </div>
+        <div class="weather-item weather-info">
+            <i id="weather-icon" class="fas fa-sun"></i>
+            <span id="weather-status">Checking...</span>
+        </div>
+    </div>
 
     <section id="mission" class="section">
         <div class="center-text">
@@ -352,10 +302,9 @@
     </footer>
 
     <script>
-        // 1. MOUSE GLOW EFFECT
+        // 1. MOUSE GLOW
         const glow = document.getElementById('cursor-glow');
         const dot = document.getElementById('cursor-dot');
-        
         document.addEventListener('mousemove', (e) => {
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
@@ -363,16 +312,75 @@
             dot.style.top = e.clientY + 'px';
         });
 
-        // 2. LIVE FARM TIME CALCULATION (India Standard Time)
+        // 2. LIVE FARM TIME (IST)
         function updateFarmTime() {
             const options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', hour12: true };
             const formatter = new Intl.DateTimeFormat([], options);
             document.getElementById('farm-time').innerText = formatter.format(new Date());
         }
-        
-        // Update immediately, then every minute
         updateFarmTime();
         setInterval(updateFarmTime, 60000);
+
+        // 3. LIVE WEATHER FETCH (Robust & Accurate)
+        async function fetchFarmWeather() {
+            try {
+                // Fetch Temp, Wind, Day/Night, AND Weather Code
+                const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=15.99&longitude=80.79&current=temperature_2m,wind_speed_10m,is_day,weather_code&timezone=auto');
+                
+                if (!response.ok) throw new Error("API Error"); // Force error if API fails
+                
+                const data = await response.json();
+                
+                const temp = data.current.temperature_2m;
+                const wind = data.current.wind_speed_10m;
+                const isDay = data.current.is_day; 
+                const wCode = data.current.weather_code;
+
+                // Update Values
+                document.getElementById('farm-temp').innerText = temp + "°C";
+                document.getElementById('farm-wind').innerText = wind + " km/h";
+
+                // --- SMART ICON LOGIC BASED ON WMO CODES ---
+                const icon = document.getElementById('weather-icon');
+                const status = document.getElementById('weather-status');
+
+                // Default to Clear
+                let iconClass = isDay ? "fas fa-sun" : "fas fa-moon";
+                let iconColor = isDay ? "#ffb703" : "#f4f4f4";
+                let statusText = isDay ? "Sunny" : "Clear Sky";
+
+                // Check Codes
+                if (wCode >= 1 && wCode <= 3) { // Cloudy
+                    iconClass = "fas fa-cloud";
+                    iconColor = "#bdc3c7";
+                    statusText = "Cloudy";
+                } else if (wCode >= 51 && wCode <= 67) { // Rain / Drizzle
+                    iconClass = "fas fa-cloud-rain";
+                    iconColor = "#3498db";
+                    statusText = "Raining";
+                } else if (wCode >= 95) { // Thunderstorm
+                    iconClass = "fas fa-bolt";
+                    iconColor = "#f1c40f";
+                    statusText = "Stormy";
+                }
+
+                // Apply Icon Changes
+                icon.className = iconClass;
+                icon.style.color = iconColor;
+                status.innerText = statusText;
+
+                // Ensure visibility if previously hidden
+                document.querySelectorAll('.weather-info').forEach(el => el.classList.remove('weather-hidden'));
+
+            } catch (error) {
+                console.log("Weather fetch failed - Hiding weather info", error);
+                // Hide all elements with 'weather-info' class
+                document.querySelectorAll('.weather-info').forEach(el => el.classList.add('weather-hidden'));
+            }
+        }
+        
+        fetchFarmWeather();
+        setInterval(fetchFarmWeather, 1800000); 
     </script>
 
 </body>
