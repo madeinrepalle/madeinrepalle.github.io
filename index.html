@@ -14,67 +14,136 @@
             --dark: #081c15;    /* Very Dark Green/Black */
             --light: #f4f6f0;   /* Soft Earthy White */
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.7; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: none; /* Hide default cursor for custom one */ }
+        
+        /* Show default cursor on links/buttons so people know they are clickable */
+        a, button, .cta-btn { cursor: pointer; }
+
+        body { 
+            background-color: var(--light); 
+            color: var(--dark); 
+            line-height: 1.7; 
+            overflow-x: hidden;
+        }
+
+        /* --- FANCY MOUSE GLOW EFFECT --- */
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 183, 3, 0.15) 0%, rgba(255, 183, 3, 0) 70%);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay; /* This makes it blend nicely with greens */
+            transition: transform 0.1s ease;
+        }
+        
+        #cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: 0 0 10px var(--accent);
+        }
 
         /* HEADER */
         header {
-            background: white; padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95); 
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
         }
         
-        /* LOGO */
         .logo { 
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            color: var(--accent); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
+            font-size: 1.8rem; font-weight: 800; color: var(--accent); 
+            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;
         }
         .logo span { 
-            color: var(--primary); 
-            font-size: 1.8rem; 
-            font-weight: 900; 
+            color: var(--primary); font-size: 1.8rem; font-weight: 900; 
             text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
         }
 
         .nav-links { display: flex; align-items: center; }
-        
         .nav-links a { 
-            text-decoration: none; 
-            color: var(--secondary); 
-            margin-left: 2rem; 
-            font-weight: 700; 
-            font-size: 1rem; 
-            transition: 0.3s; 
+            text-decoration: none; color: var(--secondary); margin-left: 2rem; 
+            font-weight: 700; font-size: 1rem; transition: 0.3s; 
         }
         .nav-links a:hover { color: var(--accent); }
         
-        /* HERO */
+        /* HERO with DYNAMIC ELEMENTS */
         .hero {
-            height: 80vh;
-            /* UPDATED: hero-farm.png and no 'images/' folder */
-            background: linear-gradient(rgba(8, 28, 21, 0.6), rgba(8, 28, 21, 0.4)), url('hero-farm.png');
-            background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 20px;
+            height: 85vh;
+            position: relative;
+            background: linear-gradient(rgba(8, 28, 21, 0.7), rgba(8, 28, 21, 0.5)), url('hero-farm.png');
+            background-size: cover; background-position: center; background-attachment: fixed; /* Parallax effect */
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            text-align: center; color: white; padding: 0 20px; overflow: hidden;
         }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 400; color: #e9ecef; }
+
+        /* Sun Rays Animation */
+        .sun-rays {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-conic-gradient(
+                from 0deg,
+                rgba(255, 255, 255, 0.03) 0deg 10deg,
+                transparent 10deg 20deg
+            );
+            animation: rotate 60s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; font-weight: 800; text-shadow: 0 4px 10px rgba(0,0,0,0.5); position: relative; z-index: 2; }
+        .hero p { font-size: 1.3rem; max-width: 700px; margin-bottom: 2rem; font-weight: 400; color: #e9ecef; position: relative; z-index: 2; }
         
+        /* LIVE FARM STATUS WIDGET */
+        .farm-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .status-dot {
+            height: 8px; width: 8px; background-color: #25D366; border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 8px #25D366; animation: blink 2s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
         .cta-btn { 
-            padding: 14px 40px; 
-            background: var(--accent); 
-            color: var(--dark); 
-            text-decoration: none; 
-            font-weight: 800; 
-            border-radius: 50px; 
-            transition: 0.3s; 
-            text-transform: uppercase; 
-            font-size: 0.95rem; 
-            box-shadow: 0 5px 15px rgba(255, 183, 3, 0.4);
+            position: relative; z-index: 2;
+            padding: 16px 45px; background: var(--accent); color: var(--dark); text-decoration: none; 
+            font-weight: 800; border-radius: 50px; transition: 0.3s; text-transform: uppercase; 
+            font-size: 0.95rem; box-shadow: 0 5px 15px rgba(255, 183, 3, 0.4);
         }
         .cta-btn:hover { background: #ffca3a; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 183, 3, 0.6); }
 
@@ -113,20 +182,11 @@
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         
         .footer-btn-linkedin { 
-            background: #0077b5; 
-            color: white !important; 
-            padding: 6px 15px; 
-            border-radius: 4px; 
-            font-size: 0.8rem;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-left: 10px;
-            vertical-align: middle;
+            background: #0077b5; color: white !important; padding: 6px 15px; border-radius: 4px; 
+            font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; 
+            gap: 5px; margin-left: 10px; vertical-align: middle;
         }
         .footer-btn-linkedin:hover { background: #005e93; }
-
         .tiny-footer-text { font-size: 0.8rem; color: #666; margin-top: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
 
         @media (max-width: 768px) { 
@@ -135,12 +195,16 @@
             .founder-container { flex-direction: column; padding: 1.5rem; }
             .product-container { padding: 2rem; }
             .tiny-footer-text { flex-direction: column; gap: 10px; }
-            .logo { font-size: 1.5rem; }
-            .logo span { font-size: 1.5rem; }
+            .logo { font-size: 1.5rem; } .logo span { font-size: 1.5rem; }
+            #cursor-glow, #cursor-dot { display: none; /* Disable custom cursor on mobile */ }
+            body { cursor: auto; }
         }
     </style>
 </head>
 <body>
+
+    <div id="cursor-glow"></div>
+    <div id="cursor-dot"></div>
 
     <header>
         <div class="logo">Made In <span>Repalle</span></div>
@@ -152,6 +216,14 @@
     </header>
 
     <section class="hero">
+        <div class="sun-rays"></div> <div class="farm-status">
+            <div class="status-dot"></div>
+            <span>LIVE at Farm:</span>
+            <span id="farm-time" style="color: white; margin-left: 5px;">Loading...</span>
+            <span style="color: rgba(255,255,255,0.4); margin: 0 10px;">|</span>
+            <span style="font-family: monospace; font-size: 0.8rem; color: #ccc;">15°59'N 80°47'E</span>
+        </div>
+
         <h1>Taste the Indian Soil & Sunshine</h1>
         <p>Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.</p>
         <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn">Contact for Bulk Orders</a>
@@ -278,6 +350,30 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // 1. MOUSE GLOW EFFECT
+        const glow = document.getElementById('cursor-glow');
+        const dot = document.getElementById('cursor-dot');
+        
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+        });
+
+        // 2. LIVE FARM TIME CALCULATION (India Standard Time)
+        function updateFarmTime() {
+            const options = { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', hour12: true };
+            const formatter = new Intl.DateTimeFormat([], options);
+            document.getElementById('farm-time').innerText = formatter.format(new Date());
+        }
+        
+        // Update immediately, then every minute
+        updateFarmTime();
+        setInterval(updateFarmTime, 60000);
+    </script>
 
 </body>
 </html>
