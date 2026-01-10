@@ -17,24 +17,45 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;600;700&family=Ramabhadra&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            /* COLOR PALETTE */
-            --primary: #1b4332; /* Deep Hunter Green */
-            --secondary: #40916c; /* Medium Leaf Green */
-            --accent: #ffb703;  /* Vibrant Harvest Gold */
-            --dark: #081c15;    /* Very Dark Green/Black */
-            --light: #f4f6f0;   /* Soft Earthy White */
+            --primary: #1b4332; 
+            --secondary: #40916c; 
+            --accent: #ffb703;  
+            --dark: #081c15;    
+            --light: #f4f6f0;   
         }
         
-        /* SMOOTH SCROLLING */
         html { scroll-behavior: smooth; }
-
+        
+        /* DEFAULT FONT (English) */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; cursor: none; }
         
-        a, button, .cta-btn { cursor: pointer; }
-
+        a, button, .cta-btn, .lang-btn { cursor: pointer; }
         body { background-color: var(--light); color: var(--dark); line-height: 1.7; overflow-x: hidden; position: relative; }
+
+        /* HEADINGS FONT (English) */
+        h1, h2, h3, .section-title, .logo, .logo span {
+            font-family: 'Ramabhadra', sans-serif; 
+        }
+
+        /* --- TELUGU MODE OVERRIDES --- */
+        body.telugu-active, 
+        body.telugu-active h1, 
+        body.telugu-active h2, 
+        body.telugu-active h3, 
+        body.telugu-active .section-title, 
+        body.telugu-active .logo, 
+        body.telugu-active .logo span,
+        body.telugu-active p,
+        body.telugu-active a,
+        body.telugu-active button {
+            font-family: 'Noto Sans Telugu', sans-serif !important;
+        }
 
         /* --- FANCY MOUSE GLOW --- */
         #cursor-glow {
@@ -53,25 +74,21 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 999; overflow: hidden;
         }
-        
         .leaf {
             position: absolute; left: -50px; 
             font-size: 1.2rem; color: var(--secondary); opacity: 0.8;
             will-change: transform;
         }
-        
         .particle {
             position: absolute; background: var(--accent); border-radius: 50%;
             opacity: 0.7; animation: floatParticle linear infinite;
         }
-
         @keyframes floatAcross {
             0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { transform: translateX(110vw) translateY(20vh) rotate(360deg); opacity: 0; }
         }
-
         @keyframes floatParticle {
             0% { transform: translateY(0) translateX(0); opacity: 0; }
             50% { opacity: 0.9; }
@@ -84,12 +101,40 @@
             padding: 0.8rem 5%; display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000;
         }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
-        .logo span { color: var(--primary); font-size: 1.8rem; font-weight: 900; text-shadow: 2px 2px 0px rgba(0,0,0,0.05); }
+        
+        .logo { 
+            font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; 
+            display: flex; align-items: center; gap: 6px; white-space: nowrap; 
+        }
+        .logo-text-1 { color: var(--accent); }
+        .logo-text-2 { color: var(--primary); font-weight: 900; text-shadow: 2px 2px 0px rgba(0,0,0,0.05); }
+
         .nav-links { display: flex; align-items: center; }
         .nav-links a { text-decoration: none; color: var(--secondary); margin-left: 2rem; font-weight: 700; font-size: 1rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
-        
+
+        /* SINGLE LANGUAGE BUTTON STYLE */
+        .lang-btn {
+            margin-left: 2rem;
+            background: white; 
+            border: 1px solid var(--secondary); 
+            border-radius: 20px; 
+            padding: 6px 15px; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            color: var(--secondary); 
+            transition: 0.3s;
+            white-space: nowrap; 
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .lang-btn:hover { 
+            background: var(--primary); 
+            color: white; 
+            border-color: var(--primary);
+        }
+
         /* HERO */
         .hero {
             height: 80vh; position: relative;
@@ -155,12 +200,12 @@
         .footer-btn-linkedin:hover { background: #005e93; }
         .tiny-footer-text { font-size: 0.8rem; color: #666; margin-top: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
 
-        /* MOBILE OPTIMIZATION */
         @media (max-width: 768px) { 
-            header { flex-direction: column; gap: 10px; padding: 1rem; }
-            .logo { font-size: 1rem; } .logo span { font-size: 1.4rem; }
+            header { flex-direction: column; gap: 15px; padding: 1rem; }
+            .logo { font-size: 1.2rem; } 
             .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
             .nav-links a { margin-left: 0; margin: 0 8px; font-size: 0.85rem; }
+            .lang-btn { margin-left: 0; margin-top: 5px; }
             .hero h1 { font-size: 2rem; } .hero p { font-size: 1rem; }
             .founder-container { flex-direction: column; padding: 1.5rem; }
             .product-container { padding: 2rem; }
@@ -179,25 +224,31 @@
     <div id="cursor-dot"></div>
 
     <header>
-        <div class="logo">Made In <span>Repalle</span></div>
+        <div class="logo">
+            <span class="logo-text-1" data-key="logo_1">Made In</span> 
+            <span class="logo-text-2" data-key="logo_2">Repalle</span>
+        </div>
+        
         <nav class="nav-links">
-            <a href="#product">The Fruit</a>
-            <a href="#founder">The Raithu</a>
-            <a href="#contact">Contact</a>
+            <a href="#product" data-key="nav_fruit">The Fruit</a>
+            <a href="#founder" data-key="nav_raithu">The Raithu</a>
+            <a href="#contact" data-key="nav_contact">Contact</a>
+            
+            <button id="lang-btn" class="lang-btn" onclick="toggleLanguage()">English / ఆంగ్లం</button>
         </nav>
     </header>
 
     <section class="hero">
         <div class="sun-rays"></div>
-        <h1>Taste the Indian Soil & Sunshine</h1>
-        <p>Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.</p>
-        <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn">Contact for Bulk Orders</a>
+        <h1 data-key="hero_title">Taste the Indian Soil & Sunshine</h1>
+        <p data-key="hero_desc">Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.</p>
+        <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" data-key="hero_btn">Contact for Bulk Orders</a>
     </section>
 
     <div id="weather-ticker">
         <div class="weather-item">
             <div class="blink-dot"></div>
-            <span>LIVE at Farm</span>
+            <span data-key="weather_live">LIVE at Farm</span>
         </div>
         <div class="weather-item">
             <i class="far fa-clock"></i>
@@ -219,29 +270,29 @@
 
     <section id="mission" class="section">
         <div class="center-text">
-            <h2 class="section-title">What Makes Us Special?</h2>
-            <p>"Made in Repalle" is committed to supporting local farmers and showcasing the unique quality of our region's fruits.</p>
+            <h2 class="section-title" data-key="mission_title">What Makes Us Special?</h2>
+            <p data-key="mission_desc">"Made in Repalle" is committed to supporting local farmers and showcasing the unique quality of our region's fruits.</p>
         </div>
         <div class="mission-grid">
             <div class="mission-card">
                 <i class="fas fa-sun"></i>
-                <h3>Farm-Fresh Flavor</h3>
-                <p>We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳</p>
+                <h3 data-key="m1_title">Farm-Fresh Flavor</h3>
+                <p data-key="m1_desc">We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳</p>
             </div>
             <div class="mission-card">
                 <i class="fas fa-leaf"></i>
-                <h3>Seasonal Offerings</h3>
-                <p>Get ready for a delightful variety of fruits throughout the year, starting with our premium Regi Pallu.</p>
+                <h3 data-key="m2_title">Seasonal Offerings</h3>
+                <p data-key="m2_desc">Get ready for a delightful variety of fruits throughout the year, starting with our premium Regi Pallu.</p>
             </div>
             <div class="mission-card">
                 <i class="fas fa-handshake"></i>
-                <h3>Local Pride</h3>
-                <p>We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.</p>
+                <h3 data-key="m3_title">Local Pride</h3>
+                <p data-key="m3_desc">We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.</p>
             </div>
             <div class="mission-card">
                 <i class="fas fa-globe-asia"></i>
-                <h3>Modern Tradition</h3>
-                <p>Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.</p>
+                <h3 data-key="m4_title">Modern Tradition</h3>
+                <p data-key="m4_desc">Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.</p>
             </div>
         </div>
     </section>
@@ -253,23 +304,26 @@
             </div>
             <div class="product-details">
                 <span style="color: var(--secondary); font-weight: 600; font-style: italic; letter-spacing: 1px;">Ziziphus mauritiana (Hybrid)</span>
-                <h2 class="section-title" style="margin-top: 0.5rem; color: var(--primary);">Bala Sundari <br><span style="color:var(--accent)">Regi Pallu</span></h2>
-                <p>
+                <h2 class="section-title" style="margin-top: 0.5rem; color: var(--primary);">
+                    <span data-key="prod_name1">Bala Sundari</span> <br>
+                    <span style="color:var(--accent)" data-key="prod_name2">Regi Pallu</span>
+                </h2>
+                <p data-key="prod_desc">
                     We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube.
                     It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.
                 </p>
                 <br>
-                <p><strong>Current Status:</strong> We have successfully launched and gained a great reputation in the region. We are now expanding our offerings.</p>
+                <p><strong data-key="prod_status_label">Current Status:</strong> <span data-key="prod_status_text">We have successfully launched and gained a great reputation in the region. We are now expanding our offerings.</span></p>
                 <br>
-                <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 0.8rem;">Contact for Bulk Orders</a>
+                <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 0.8rem;" data-key="hero_btn">Contact for Bulk Orders</a>
             </div>
         </div>
     </section>
 
     <section id="location" class="section" style="background: var(--light);">
         <div class="center-text">
-            <h2 class="section-title">Visit The Farm</h2>
-            <p>Located in the heart of the Repalle delta, Andhra Pradesh.</p>
+            <h2 class="section-title" data-key="loc_title">Our Farm</h2>
+            <p data-key="loc_desc">Located in the heart of the Repalle delta, Andhra Pradesh.</p>
         </div>
         <div class="map-container">
             <iframe 
@@ -282,10 +336,10 @@
 
     <section id="founder" class="section" style="background: #e9f5db;">
         <div class="center-text">
-            <h2 class="section-title">Our Legacy & The Raithu</h2>
-            <p>A family initiative bridging traditional farming with modern supply chains.</p>
+            <h2 class="section-title" data-key="founder_title">Our Legacy & The Raithu</h2>
+            <p data-key="founder_sub">A family initiative bridging traditional farming with modern supply chains.</p>
             <p style="margin-top: 15px; color: var(--primary); font-weight: 700; font-size: 1.2rem; background: rgba(255,255,255,0.6); display:inline-block; padding: 5px 15px; border-radius: 50px;">
-                Proudly representing the agricultural families of <span style="color:#d00000">Yalavarthi</span> and <span style="color:#d00000">Talasila</span>.
+                <span data-key="founder_fam1">Proudly representing the agricultural families of</span> <span style="color:#d00000">Yalavarthi</span> <span data-key="founder_and">and</span> <span style="color:#d00000">Talasila</span>.
             </p>
         </div>
         <div class="founder-container">
@@ -293,13 +347,13 @@
                 <img src="raithu-suresh.jpg" loading="lazy" alt="Suresh Babu Talasila in the field">
             </div>
             <div class="founder-text">
-                <h3 style="color: var(--primary); font-size: 2.2rem; font-weight: 800;">Suresh Babu Talasila</h3>
-                <p style="font-weight: bold; color: var(--accent); margin-bottom: 1.5rem; font-size: 1.2rem; letter-spacing: 1px;">FOUNDER & PROPRIETOR</p>
-                <p style="font-size: 1.05rem; color: #444;">
+                <h3 style="color: var(--primary); font-size: 2.2rem; font-weight: 800;" data-key="founder_name">Suresh Babu Talasila</h3>
+                <p style="font-weight: bold; color: var(--accent); margin-bottom: 1.5rem; font-size: 1.2rem; letter-spacing: 1px;" data-key="founder_role">FOUNDER & PROPRIETOR</p>
+                <p style="font-size: 1.05rem; color: #444;" data-key="founder_desc1">
                     Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy. 
                 </p>
                 <br>
-                <p style="font-size: 1.05rem; color: #444;">
+                <p style="font-size: 1.05rem; color: #444;" data-key="founder_desc2">
                     He leads all agricultural strategy and on-site operations, ensuring every harvest meets the highest standards of quality before it reaches your table.
                 </p>
             </div>
@@ -308,11 +362,11 @@
 
     <section id="contact" class="section" style="text-align: center; background: white;">
         <div class="center-text">
-            <h2 class="section-title">Bulk Orders & Inquiries</h2>
-            <p>We specialize in bulk orders. Please fill out your details, and we will call you to discuss pricing and delivery.</p>
+            <h2 class="section-title" data-key="contact_title">Bulk Orders & Inquiries</h2>
+            <p data-key="contact_desc">We specialize in bulk orders. Please fill out your details, and we will call you to discuss pricing and delivery.</p>
             <br>
-            <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 1.1rem; padding: 18px 50px;">
-                <i class="fas fa-paper-plane"></i> Open Order Form
+            <a href="https://forms.gle/hrbjyxdWckLVxbjB8" target="_blank" class="cta-btn" style="font-size: 1.1rem; padding: 18px 50px;" data-key="contact_btn">
+                <i class="fas fa-paper-plane"></i> <span data-key="contact_btn_text">Open Order Form</span>
             </a>
         </div>
     </section>
@@ -323,7 +377,7 @@
             <p>© 2026 All Rights Reserved.</p>
             <div style="width: 50px; height: 2px; background: var(--accent); margin: 1rem 0;"></div>
             <div class="tiny-footer-text">
-                <span>Digital Infrastructure managed by Dr. Hara Madhav Talasila.</span>
+                <span data-key="footer_credit">Digital Infrastructure managed by Dr. Hara Madhav Talasila.</span>
                 <a href="https://www.linkedin.com/company/madeinrepalle" target="_blank" class="footer-btn-linkedin">
                     <i class="fab fa-linkedin"></i> Connect
                 </a>
@@ -332,6 +386,139 @@
     </footer>
 
     <script>
+        // --- TRANSLATION DICTIONARY ---
+        const translations = {
+            en: {
+                page_title: "Made In Repalle | Farm Fresh Apple Ber",
+                logo_1: "Made In",
+                logo_2: "Repalle",
+                nav_fruit: "The Fruit",
+                nav_raithu: "The Raithu",
+                nav_contact: "Contact",
+                hero_title: "Taste the Indian Soil & Sunshine",
+                hero_desc: "Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.",
+                hero_btn: "Contact for Bulk Orders",
+                weather_live: "LIVE at Farm",
+                mission_title: "What Makes Us Special?",
+                mission_desc: "\"Made in Repalle\" is committed to supporting local farmers and showcasing the unique quality of our region's fruits.",
+                m1_title: "Farm-Fresh Flavor",
+                m1_desc: "We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳",
+                m2_title: "Seasonal Offerings",
+                m2_desc: "Get ready for a delightful variety of fruits throughout the year, starting with our premium Regi Pallu.",
+                m3_title: "Local Pride",
+                m3_desc: "We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.",
+                m4_title: "Modern Tradition",
+                m4_desc: "Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.",
+                prod_name1: "Bala Sundari",
+                prod_name2: "Regi Pallu",
+                prod_desc: "We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube. It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.",
+                prod_status_label: "Current Status:",
+                prod_status_text: "We have successfully launched and gained a great reputation in the region. We are now expanding our offerings.",
+                loc_title: "Our Farm",
+                loc_desc: "Located in the heart of the Repalle delta, Andhra Pradesh.",
+                founder_title: "Our Legacy & The Raithu",
+                founder_sub: "A family initiative bridging traditional farming with modern supply chains.",
+                founder_fam1: "Proudly representing the agricultural families of",
+                founder_and: "and",
+                founder_name: "Suresh Babu Talasila",
+                founder_role: "FOUNDER & PROPRIETOR",
+                founder_desc1: "Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy.",
+                founder_desc2: "He leads all agricultural strategy and on-site operations, ensuring every harvest meets the highest standards of quality before it reaches your table.",
+                contact_title: "Bulk Orders & Inquiries",
+                contact_desc: "We specialize in bulk orders. Please fill out your details, and we will call you to discuss pricing and delivery.",
+                contact_btn_text: "Open Order Form",
+                footer_credit: "Digital Infrastructure managed by Dr. Hara Madhav Talasila."
+            },
+            te: {
+                page_title: "మేడ్ ఇన్ రేపల్లె | తాజా పండ్లు",
+                logo_1: "మేడ్ ఇన్",
+                logo_2: "రేపల్లె",
+                nav_fruit: "మా పంట",
+                nav_raithu: "మన రైతు",
+                nav_contact: "సంప్రదించండి",
+                hero_title: "స్వచ్ఛమైన రేపల్లె రుచిని ఆస్వాదించండి",
+                hero_desc: "పొలం నుండి నేరుగా మీ ఇంటికి. స్వచ్ఛమైన, తాజా పండ్లను అందిస్తున్నాము.",
+                hero_btn: "ఆర్డర్ల కోసం సంప్రదించండి",
+                weather_live: "పొలం వద్ద ప్రస్తుత స్థితి",
+                mission_title: "మా ప్రత్యేకత ఏమిటి?",
+                mission_desc: "\"మేడ్ ఇన్ రేపల్లె\" స్థానిక రైతులను ఆదరించడానికి మరియు మన ప్రాంత పండ్ల విశిష్టతను చాటడానికి కట్టుబడి ఉంది.",
+                m1_title: "తాజా రుచి",
+                m1_desc: "మేము పండ్లను సరైన సమయంలో కోస్తాము, తద్వారా మీరు స్వచ్ఛమైన రుచిని ఆస్వాదించవచ్చు. ☀️🇮🇳",
+                m2_title: "కాలానుగుణ పంటలు",
+                m2_desc: "ఏడాది పొడవునా వివిధ రకాల పండ్లను అందించడానికి సిద్ధంగా ఉన్నాము. మా ప్రీమియం రేగి పండ్లతో ప్రారంభం.",
+                m3_title: "ప్రాంతీయ గర్వం",
+                m3_desc: "హైబ్రిడ్ వ్యవసాయంలో రేపల్లెను అగ్రస్థానంలో నిలపడమే మా లక్ష్యం.",
+                m4_title: "ఆధునిక సంప్రదాయం",
+                m4_desc: "సాంప్రదాయ వ్యవసాయాన్ని ఆధునిక డిజిటల్ పద్ధతులతో మిళితం చేసి, రేపల్లె రుచులను ప్రపంచానికి అందిస్తున్నాము.",
+                prod_name1: "బాలా సుందరి",
+                prod_name2: "రేగి పండ్లు",
+                prod_desc: "సాంప్రదాయ రేగి పండుకు ఇది ఆధునిక రూపం. మా హైబ్రిడ్ రకం (బాలా సుందరి) ఆపిల్ మరియు రేగి పండుల రుచిని కలిగి ఉంటుంది. ఇది తియ్యగా మరియు కరకరలాడుతూ ఉంటుంది.",
+                prod_status_label: "ప్రస్తుత స్థితి:",
+                prod_status_text: "మేము ఈ ప్రాంతంలో మంచి గుర్తింపు పొందాము. ఇప్పుడు మా సేవలను విస్తరిస్తున్నాము.",
+                loc_title: "మా పొలం",
+                loc_desc: "ఆంధ్రా ప్రదేశ్, రేపల్లె డెల్టా నడిబొడ్డున ఉంది.",
+                founder_title: "మా వారసత్వం & రైతు",
+                founder_sub: "సాంప్రదాయ వ్యవసాయాన్ని ఆధునిక పద్ధతులతో అనుసంధానిస్తున్న కుటుంబ సంస్థ.",
+                founder_fam1: "గౌరవనీయులైన వ్యవసాయ కుటుంబాలు:",
+                founder_and: "మరియు",
+                founder_name: "సురేష్ బాబు తలశిల",
+                founder_role: "వ్యవస్థాపకులు",
+                founder_desc1: "మా వ్యవస్థాపకులు నిజమైన రైతు. రేపల్లె డెల్టాలో దశాబ్దాల అనుభవం కలిగిన సురేష్ బాబు గారు, భూమి పట్ల అపారమైన గౌరవం కలిగి ఉన్నారు.",
+                founder_desc2: "పంట నాణ్యతను పరిశీలించి, అది మీ ఇంటికి చేరే వరకు ప్రతి దశను ఆయనే స్వయంగా పర్యవేక్షిస్తారు.",
+                contact_title: "బల్క్ ఆర్డర్లు & విచారణలు",
+                contact_desc: "మేము బల్క్ ఆర్డర్లను స్వీకరిస్తాము. దయచేసి మీ వివరాలను పూరించండి, మేము మిమ్మల్ని సంప్రదిస్తాము.",
+                contact_btn_text: "ఆర్డర్ ఫారం తెరవండి",
+                footer_credit: "డిజిటల్ నిర్వహణ: డా. హర మాధవ్ తలశిల."
+            }
+        };
+
+        let currentLang = 'te'; // DEFAULT LANGUAGE
+
+        function setLanguage(lang) {
+            // Font Switch Logic
+            if(lang === 'te') {
+                document.body.classList.add('telugu-active');
+            } else {
+                document.body.classList.remove('telugu-active');
+            }
+
+            // Update Browser Title
+            document.title = translations[lang].page_title;
+
+            // Update Text Elements
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    if (key === 'founder_desc1') {
+                         if(lang === 'en') el.innerHTML = "Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy.";
+                         else el.innerText = translations[lang][key];
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+        }
+
+        // TOGGLE FUNCTION FOR SINGLE BUTTON
+        function toggleLanguage() {
+            const btn = document.getElementById('lang-btn');
+            
+            if (currentLang === 'te') {
+                setLanguage('en');
+                currentLang = 'en';
+                btn.innerText = "Telugu / తెలుగు";
+            } else {
+                setLanguage('te');
+                currentLang = 'te';
+                btn.innerText = "English / ఆంగ్లం";
+            }
+        }
+
+        // INITIALIZE IN TELUGU
+        setLanguage('te');
+
+
         // --- 1. SIDE-WIND LEAVES & PARTICLES ---
         function createLeaf() {
             const leaf = document.createElement('div');
@@ -342,7 +529,6 @@
             leaf.style.fontSize = Math.random() * 1 + 0.5 + 'rem';
             
             document.getElementById('effects-container').appendChild(leaf);
-            
             setTimeout(() => { leaf.remove(); }, 18000); 
         }
 
@@ -355,7 +541,6 @@
             p.style.height = p.style.width;
             p.style.animationDuration = Math.random() * 5 + 5 + 's';
             document.getElementById('effects-container').appendChild(p);
-            
             setTimeout(() => { p.remove(); }, 10000);
         }
 
