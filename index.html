@@ -196,9 +196,33 @@
 
         footer { background: #0b231a; color: #a5a5a5; text-align: center; padding: 4rem 1rem; font-size: 0.9rem; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-        .footer-btn-linkedin { background: #0077b5; color: white !important; padding: 6px 15px; border-radius: 4px; font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-left: 10px; vertical-align: middle; }
+        
+        /* Updated Footer styles for stacking */
+        .tiny-footer-text { 
+            font-size: 0.8rem; 
+            color: #666; 
+            margin-top: 0; 
+            display: flex; 
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; 
+            justify-content: center; 
+            gap: 12px; /* Space between text and button */
+        }
+        
+        .footer-btn-linkedin { 
+            background: #0077b5; 
+            color: white !important; 
+            padding: 6px 15px; 
+            border-radius: 4px; 
+            font-size: 0.8rem; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 5px; 
+            vertical-align: middle; 
+            margin-left: 0; /* Removed margin since it's on a new line */
+        }
         .footer-btn-linkedin:hover { background: #005e93; }
-        .tiny-footer-text { font-size: 0.8rem; color: #666; margin-top: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;}
 
         @media (max-width: 768px) { 
             header { flex-direction: column; gap: 15px; padding: 1rem; }
@@ -209,7 +233,7 @@
             .hero h1 { font-size: 2rem; } .hero p { font-size: 1rem; }
             .founder-container { flex-direction: column; padding: 1.5rem; }
             .product-container { padding: 2rem; }
-            .tiny-footer-text { flex-direction: column; gap: 10px; }
+            .tiny-footer-text { gap: 10px; }
             #cursor-glow, #cursor-dot { display: none; }
             body { cursor: auto; }
             #weather-ticker { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
@@ -382,6 +406,8 @@
                     <i class="fab fa-linkedin"></i> Connect
                 </a>
             </div>
+            
+            <img src="simple_logo.png" alt="Made In Repalle Logo" style="width: 80px; margin-top: 2rem; opacity: 0.8;">
         </div>
     </footer>
 
