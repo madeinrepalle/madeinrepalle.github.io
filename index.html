@@ -43,7 +43,7 @@
             font-family: 'Ramabhadra', sans-serif; 
         }
 
-        /* --- TELUGU MODE OVERRIDES --- */
+        /* TELUGU MODE OVERRIDES */
         body.telugu-active, 
         body.telugu-active h1, 
         body.telugu-active h2, 
@@ -57,7 +57,7 @@
             font-family: 'Noto Sans Telugu', sans-serif !important;
         }
 
-        /* --- FANCY MOUSE GLOW --- */
+        /* FANCY MOUSE GLOW */
         #cursor-glow {
             position: fixed; width: 450px; height: 450px;
             background: radial-gradient(circle, rgba(255, 183, 3, 0.15) 0%, rgba(255, 183, 3, 0) 70%);
@@ -69,7 +69,24 @@
             transform: translate(-50%, -50%); pointer-events: none; z-index: 10000; box-shadow: 0 0 15px var(--accent);
         }
 
-        /* --- SIDE-WIND LEAVES & PARTICLES --- */
+        /* GOLDEN DUST PARTICLE */
+        .dust-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            box-shadow: 0 0 8px var(--accent);
+            animation: dustFade 0.8s forwards ease-out;
+        }
+        @keyframes dustFade {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(0.2) translateY(25px); opacity: 0; }
+        }
+
+        /* SIDE-WIND LEAVES & PARTICLES */
         #effects-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none; z-index: 999; overflow: hidden;
@@ -93,6 +110,16 @@
             0% { transform: translateY(0) translateX(0); opacity: 0; }
             50% { opacity: 0.9; }
             100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+        }
+
+        /* COLOR PULSE ANIMATION */
+        @keyframes colorPulse {
+            0% { color: var(--secondary); }
+            50% { color: var(--accent); }
+            100% { color: var(--secondary); }
+        }
+        .color-animate {
+            animation: colorPulse 3s infinite ease-in-out;
         }
 
         /* HEADER */
@@ -180,8 +207,27 @@
         .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .mission-card { background: white; padding: 2.5rem 2rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border-bottom: 4px solid transparent; }
         .mission-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--accent); }
-        .mission-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
         
+        /* Updated Icon Styles for Animation */
+        .mission-card i { 
+            font-size: 2.5rem; 
+            margin-bottom: 1.5rem; 
+            animation: colorPulse 3s infinite ease-in-out;
+        }
+        
+        /* SPECIAL HIGHLIGHT FOR COMPETITOR CARD */
+        .competitor-card {
+            border: 2px solid var(--accent);
+            background: #fffdf5; 
+            position: relative;
+        }
+        .competitor-card:hover { border-bottom: 4px solid var(--accent); }
+        .vs-badge {
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: var(--dark); font-weight: 800; font-size: 0.8rem;
+            padding: 5px 15px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+        }
+
         .product-container { display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; background: white; padding: 4rem; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .product-img { flex: 1; min-width: 300px; }
         .product-img img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
@@ -197,16 +243,15 @@
         footer { background: #0b231a; color: #a5a5a5; text-align: center; padding: 4rem 1rem; font-size: 0.9rem; }
         .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         
-        /* Updated Footer styles for stacking */
         .tiny-footer-text { 
             font-size: 0.8rem; 
             color: #666; 
             margin-top: 0; 
             display: flex; 
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
             align-items: center; 
             justify-content: center; 
-            gap: 12px; /* Space between text and button */
+            gap: 12px; 
         }
         
         .footer-btn-linkedin { 
@@ -220,7 +265,7 @@
             align-items: center; 
             gap: 5px; 
             vertical-align: middle; 
-            margin-left: 0; /* Removed margin since it's on a new line */
+            margin-left: 0; 
         }
         .footer-btn-linkedin:hover { background: #005e93; }
 
@@ -294,30 +339,36 @@
 
     <section id="mission" class="section">
         <div class="center-text">
-            <h2 class="section-title" data-key="mission_title">What Makes Us Special?</h2>
+            <h2 class="section-title" data-key="mission_title">What Makes Us <span class="color-animate">Special?</span></h2>
             <p data-key="mission_desc">"Made in Repalle" is committed to supporting local farmers and showcasing the unique quality of our region's fruits.</p>
         </div>
         <div class="mission-grid">
+            
             <div class="mission-card">
                 <i class="fas fa-sun"></i>
-                <h3 data-key="m1_title">Farm-Fresh Flavor</h3>
-                <p data-key="m1_desc">We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳</p>
+                <h3 data-key="feat1_title">Harvested at Peak Ripeness</h3>
+                <p data-key="feat1_desc">We don't pluck early. Our fruits stay on the tree until they are perfectly ripe, ensuring maximum sweetness. Plucked today, sold today.</p>
             </div>
+            
             <div class="mission-card">
-                <i class="fas fa-leaf"></i>
-                <h3 data-key="m2_title">Seasonal Offerings</h3>
-                <p data-key="m2_desc">Get ready for a delightful variety of fruits throughout the year, starting with our premium Regi Pallu.</p>
+                <i class="fas fa-seedling"></i>
+                <h3 data-key="feat2_title">100% Organic & Naturally Grown</h3>
+                <p data-key="feat2_desc">No harsh chemicals. We use time-tested, historic farming methods and natural fertilizers to nourish our soil and your family.</p>
             </div>
+            
             <div class="mission-card">
-                <i class="fas fa-handshake"></i>
-                <h3 data-key="m3_title">Local Pride</h3>
-                <p data-key="m3_desc">We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.</p>
+                <i class="fas fa-map-location-dot"></i>
+                <h3 data-key="feat3_title">Mana Repalle Pride, All Year</h3>
+                <p data-key="feat3_desc">Putting the rich Repalle delta on the map. We are bringing you a continuous seasonal harvest of the region's finest fruits, starting with Apple Ber.</p>
             </div>
-            <div class="mission-card">
-                <i class="fas fa-globe-asia"></i>
-                <h3 data-key="m4_title">Modern Tradition</h3>
-                <p data-key="m4_desc">Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.</p>
+
+            <div class="mission-card competitor-card">
+                <div class="vs-badge" data-key="feat4_badge">The Difference</div>
+                <i class="fas fa-truck-fast"></i>
+                <h3 data-key="feat4_title">Why Our Fruits Taste Better</h3>
+                <p data-key="feat4_desc">Competitors import unripe fruits from distant states to survive transit and sales for 4-days or more. We grow locally, harvest fully ripe, and sell same-day. The difference is in every bite.</p>
             </div>
+
         </div>
     </section>
 
@@ -333,8 +384,7 @@
                     <span style="color:var(--accent)" data-key="prod_name2">Regi Pallu</span>
                 </h2>
                 <p data-key="prod_desc">
-                    We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube.
-                    It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.
+                    We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube. It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.
                 </p>
                 <br>
                 <p><strong data-key="prod_status_label">Current Status:</strong> <span data-key="prod_status_text">We have successfully launched and gained a great reputation in the region. We are now expanding our offerings.</span></p>
@@ -374,7 +424,7 @@
                 <h3 style="color: var(--primary); font-size: 2.2rem; font-weight: 800;" data-key="founder_name">Suresh Babu Talasila</h3>
                 <p style="font-weight: bold; color: var(--accent); margin-bottom: 1.5rem; font-size: 1.2rem; letter-spacing: 1px;" data-key="founder_role">FOUNDER & PROPRIETOR</p>
                 <p style="font-size: 1.05rem; color: #444;" data-key="founder_desc1">
-                    Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy. 
+                    Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy.
                 </p>
                 <br>
                 <p style="font-size: 1.05rem; color: #444;" data-key="founder_desc2">
@@ -425,16 +475,23 @@
                 hero_desc: "Farm-fresh seasonal fruits. Delivering the authentic flavor of Repalle directly to your table.",
                 hero_btn: "Contact for Bulk Orders",
                 weather_live: "LIVE at Farm",
-                mission_title: "What Makes Us Special?",
+                
+                mission_title: "What Makes Us <span class='color-animate'>Special?</span>",
                 mission_desc: "\"Made in Repalle\" is committed to supporting local farmers and showcasing the unique quality of our region's fruits.",
-                m1_title: "Farm-Fresh Flavor",
-                m1_desc: "We harvest fruits at their peak, ensuring you experience the true taste of the Indian soil and sunshine. ☀️🇮🇳",
-                m2_title: "Seasonal Offerings",
-                m2_desc: "Get ready for a delightful variety of fruits throughout the year, starting with our premium Regi Pallu.",
-                m3_title: "Local Pride",
-                m3_desc: "We are building a brand that puts Repalle on the map for high-quality, hybrid agriculture.",
-                m4_title: "Modern Tradition",
-                m4_desc: "Combining age-old farming wisdom with modern digital platforms to bring Repalle's finest directly to the world.",
+                
+                feat1_title: "Harvested at Peak Ripeness",
+                feat1_desc: "We don't pluck early. Our fruits stay on the tree until they are perfectly ripe, ensuring maximum sweetness. Plucked today, sold today.",
+                
+                feat2_title: "100% Organic & Naturally Grown",
+                feat2_desc: "No harsh chemicals. We use time-tested, historic farming methods and natural fertilizers to nourish our soil and your family.",
+                
+                feat3_title: "Mana Repalle Pride, All Year",
+                feat3_desc: "Putting the rich Repalle delta on the map. We are bringing you a continuous seasonal harvest of the region's finest fruits, starting with Apple Ber.",
+                
+                feat4_badge: "The Difference",
+                feat4_title: "Why Our Fruits Taste Better",
+                feat4_desc: "Competitors import unripe fruits from distant states to survive transit and sales for 4-days or more. We grow locally, harvest fully ripe, and sell same-day. The difference is in every bite.",
+
                 prod_name1: "Bala Sundari",
                 prod_name2: "Regi Pallu",
                 prod_desc: "We are revolutionizing the traditional Regi Pandu. Our hybrid variety (Bala Sundari) is sized between an apple and a jujube. It combines the crunch of an apple with the sweet, nostalgic tang of the traditional fruit.",
@@ -466,19 +523,26 @@
                 hero_desc: "పొలం నుండి నేరుగా మీ ఇంటికి. స్వచ్ఛమైన, తాజా పండ్లను అందిస్తున్నాము.",
                 hero_btn: "ఆర్డర్ల కోసం సంప్రదించండి",
                 weather_live: "పొలం వద్ద ప్రస్తుత స్థితి",
-                mission_title: "మా ప్రత్యేకత ఏమిటి?",
+                
+                mission_title: "మా <span class='color-animate'>ప్రత్యేకత</span> ఏమిటి?",
                 mission_desc: "\"మేడ్ ఇన్ రేపల్లె\" స్థానిక రైతులను ఆదరించడానికి మరియు మన ప్రాంత పండ్ల విశిష్టతను చాటడానికి కట్టుబడి ఉంది.",
-                m1_title: "తాజా రుచి",
-                m1_desc: "మేము పండ్లను సరైన సమయంలో కోస్తాము, తద్వారా మీరు స్వచ్ఛమైన రుచిని ఆస్వాదించవచ్చు. ☀️🇮🇳",
-                m2_title: "కాలానుగుణ పంటలు",
-                m2_desc: "ఏడాది పొడవునా వివిధ రకాల పండ్లను అందించడానికి సిద్ధంగా ఉన్నాము. మా ప్రీమియం రేగి పండ్లతో ప్రారంభం.",
-                m3_title: "ప్రాంతీయ గర్వం",
-                m3_desc: "హైబ్రిడ్ వ్యవసాయంలో రేపల్లెను అగ్రస్థానంలో నిలపడమే మా లక్ష్యం.",
-                m4_title: "ఆధునిక సంప్రదాయం",
-                m4_desc: "సాంప్రదాయ వ్యవసాయాన్ని ఆధునిక డిజిటల్ పద్ధతులతో మిళితం చేసి, రేపల్లె రుచులను ప్రపంచానికి అందిస్తున్నాము.",
+                
+                feat1_title: "చెట్టుకే పండిన తాజాదనం",
+                feat1_desc: "కాయలు పండకముందే మేము కోయము. పండు పూర్తిగా రంగు, అసలైన తీపి వచ్చాకే కోసి, అదే రోజు మీకు అందిస్తాము.",
+                
+                feat2_title: "100% సేంద్రియ వ్యవసాయం",
+                feat2_desc: "రసాయనాలకు దూరం. మా పూర్వీకుల నాటి సహజమైన ఎరువులు, సంప్రదాయ పద్ధతులతో మా భూమిని, మీ ఆరోగ్యాన్ని కాపాడుతున్నాము.",
+                
+                feat3_title: "మన రేపల్లె గర్వం",
+                feat3_desc: "రేపల్లె డెల్టా సారాన్ని ప్రపంచానికి చాటుతున్నాము. ఆపిల్ బేర్ తో మొదలుపెట్టి, ఏడాది పొడవునా రకరకాల పండ్లను మీకు అందిస్తాము.",
+                
+                feat4_badge: "తేడా మీకే తెలుస్తుంది",
+                feat4_title: "మన పండ్ల రుచి ఎందుకు వేరు?",
+                feat4_desc: "ఇతరులు పండని కాయలను ఎక్కడినుండో తెచ్చి రోజుల తరబడి అమ్ముతారు. మన పండ్లు స్థానికంగా, సహజంగా పండి, అదే రోజు అమ్ముతాము. ఆ రుచి తేడా ఏంటో తింటే మీకే తెలుస్తుంది!",
+
                 prod_name1: "బాలా సుందరి",
                 prod_name2: "రేగి పండ్లు",
-                prod_desc: "సాంప్రదాయ రేగి పండుకు ఇది ఆధునిక రూపం. మా హైబ్రిడ్ రకం (బాలా సుందరి) ఆపిల్ మరియు రేగి పండుల రుచిని కలిగి ఉంటుంది. ఇది తియ్యగా మరియు కరకరలాడుతూ ఉంటుంది.",
+                prod_desc: "సాంప్రదాయ రేగి పండుకు ఇది ఆధునిక రూపం. మా హైబ్రిడ్ రకం (బాలా సుందరి) ఆపిల్ ಮತ್ತು రేగి పండుల రుచిని కలిగి ఉంటుంది. ఇది తియ్యగా మరియు కరకరలాడుతూ ఉంటుంది.",
                 prod_status_label: "ప్రస్తుత స్థితి:",
                 prod_status_text: "మేము ఈ ప్రాంతంలో మంచి గుర్తింపు పొందాము. ఇప్పుడు మా సేవలను విస్తరిస్తున్నాము.",
                 loc_title: "మా పొలం",
@@ -498,35 +562,26 @@
             }
         };
 
-        let currentLang = 'te'; // DEFAULT LANGUAGE
+        let currentLang = 'te'; 
 
         function setLanguage(lang) {
-            // Font Switch Logic
             if(lang === 'te') {
                 document.body.classList.add('telugu-active');
             } else {
                 document.body.classList.remove('telugu-active');
             }
 
-            // Update Browser Title
             document.title = translations[lang].page_title;
 
-            // Update Text Elements
             const elements = document.querySelectorAll('[data-key]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[lang][key]) {
-                    if (key === 'founder_desc1') {
-                         if(lang === 'en') el.innerHTML = "Our Founder is a true <em>Raithu</em> (Farmer). With decades of experience working the rich soil of the Repalle delta, Suresh Babu embodies the deep respect for the land that defines our family legacy.";
-                         else el.innerText = translations[lang][key];
-                    } else {
-                        el.innerText = translations[lang][key];
-                    }
+                    el.innerHTML = translations[lang][key];
                 }
             });
         }
 
-        // TOGGLE FUNCTION FOR SINGLE BUTTON
         function toggleLanguage() {
             const btn = document.getElementById('lang-btn');
             
@@ -541,15 +596,17 @@
             }
         }
 
-        // INITIALIZE IN TELUGU
         setLanguage('te');
 
-
-        // --- 1. SIDE-WIND LEAVES & PARTICLES ---
+        // --- 1. SIDE-WIND LEAVES & FRUITS ---
         function createLeaf() {
             const leaf = document.createElement('div');
             leaf.classList.add('leaf');
-            leaf.innerText = Math.random() > 0.5 ? '🍃' : '🍂'; 
+            
+            // Mix of leaves and fruits (apples representing the Apple Ber)
+            const floatingItems = ['🍃', '🍂', '🍃', '🍏', '🍎', '🍃'];
+            leaf.innerText = floatingItems[Math.floor(Math.random() * floatingItems.length)]; 
+            
             leaf.style.top = Math.random() * 80 + 'vh'; 
             leaf.style.animation = `floatAcross ${Math.random() * 8 + 10}s linear forwards`;
             leaf.style.fontSize = Math.random() * 1 + 0.5 + 'rem';
@@ -573,15 +630,42 @@
         setInterval(createLeaf, 3000); 
         setInterval(createParticle, 150); 
 
-        // --- 2. MOUSE GLOW ---
+        // --- 2. MOUSE GLOW & GOLDEN DUST TRAIL ---
         const glow = document.getElementById('cursor-glow');
         const dot = document.getElementById('cursor-dot');
+        let lastDustTime = 0;
+
         document.addEventListener('mousemove', (e) => {
+            // Update glow and dot positions
             glow.style.left = e.clientX + 'px';
             glow.style.top = e.clientY + 'px';
             dot.style.left = e.clientX + 'px';
             dot.style.top = e.clientY + 'px';
+
+            // Create Golden Dust Trail
+            const now = Date.now();
+            if (now - lastDustTime > 40) { // Limit particle creation rate
+                lastDustTime = now;
+                createDustParticle(e.clientX, e.clientY);
+            }
         });
+
+        function createDustParticle(x, y) {
+            const dust = document.createElement('div');
+            dust.classList.add('dust-particle');
+            
+            // Add a little randomness to the spawn position
+            const offsetX = (Math.random() - 0.5) * 15;
+            const offsetY = (Math.random() - 0.5) * 15;
+            
+            dust.style.left = (x + offsetX) + 'px';
+            dust.style.top = (y + offsetY) + 'px';
+            
+            document.getElementById('effects-container').appendChild(dust);
+            
+            // Remove after animation finishes
+            setTimeout(() => { dust.remove(); }, 800);
+        }
 
         // --- 3. LIVE FARM TIME ---
         function updateFarmTime() {
